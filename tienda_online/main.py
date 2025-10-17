@@ -3,7 +3,7 @@ from Services import TiendaService
 from models import Producto, ProductoElectronico, ProductoRopa
 
 def main():
-	tienda = TiendaService()
+	tienda = TiendaService() # instancia del servicio de la tienda
 
 	# Paso 1: Registrar usuarios (3 clientes y 1 administrador)
 	print('Registrar usuarios')
