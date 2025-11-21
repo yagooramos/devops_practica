@@ -47,11 +47,27 @@ tienda_online/
 
 ### Ejecución
 
-Para ejecutar la aplicación:
+#### Ejecución Local
+
+Para ejecutar la aplicación localmente:
 
 ```bash
 python tienda_online/main.py
 ```
+
+#### Ejecución con Docker
+
+Para ejecutar la aplicación en un contenedor Docker:
+
+```bash
+# Construir la imagen
+docker build -t tienda-online:latest .
+
+# Ejecutar el contenedor
+docker run --rm tienda-online:latest
+```
+
+Para más detalles sobre Docker, consulta [DOCKER.md](DOCKER.md)
 
 ### Objetivo Académico
 
