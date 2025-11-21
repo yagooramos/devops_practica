@@ -18,9 +18,10 @@ USER appuser
 # Configurar variables de entorno
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONPATH=/app
 
-# Exponer puerto (por si en el futuro se convierte en API)
+# Exponer puerto (opcional, si fuera una API web)
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación
-CMD ["python", "-m", "tienda_online.main"]
+CMD ["python", "tienda_online/main.py"]
