@@ -1,0 +1,8 @@
+# Dependencias del proyecto Tienda Online
+# Este proyecto utiliza solo la biblioteca estándar de Python
+# pero se incluye requirements.txt como buena práctica
+
+# Si en el futuro se añaden dependencias externas, agregarlas aquí con versiones fijadas
+# Ejemplo:
+# requests==2.32.3
+# flask==3.0.0

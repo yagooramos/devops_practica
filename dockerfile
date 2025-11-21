@@ -1,26 +1,36 @@
-# Usar imagen base oficial de Python 3.11
-FROM python:3.11-slim
+# Usar imagen base oficial de Python 3.12-slim
+FROM python:3.12-slim
+
+# Información del mantenedor
+LABEL maintainer="yagooramos"
+LABEL description="Tienda Online - Sistema de gestión con Python"
 
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar el código de la aplicación al contenedor
+# Copiar primero requirements.txt para aprovechar la caché de Docker
+COPY requirements.txt .
+
+# Instalar dependencias de Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar el código fuente al contenedor
 COPY tienda_online/ /app/tienda_online/
 
-# Instalar dependencias del sistema si son necesarias (opcional)
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
-
 # Crear un usuario no privilegiado para ejecutar la aplicación
-RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+RUN useradd -m -u 1000 appuser && \
+    chown -R appuser:appuser /app && \
+    chmod -R 755 /app
+
+# Cambiar al usuario no privilegiado
 USER appuser
 
 # Configurar variables de entorno
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONPATH=/app
 
-# Exponer puerto (opcional, si fuera una API web)
+# Exponer puerto (opcional, preparado para futuras implementaciones de API)
 EXPOSE 8000
 
 # Comando para ejecutar la aplicación
